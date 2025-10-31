@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Twitch Video Preview",
+  "version": "1.0.0",
+  "description": "Shows video preview when hovering over Twitch channels without ads",
+  "permissions": ["storage", "declarativeNetRequest"],
+  "host_permissions": ["*://*.twitch.tv/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.twitch.tv/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+
+  "icons": {
+    "16": "favicon.png",
+    "48": "favicon.png",
+    "128": "favicon.png"
+  }
+}
