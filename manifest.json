@@ -1,23 +1,29 @@
 {
   "manifest_version": 3,
   "name": "Twitch Video Preview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Shows video preview when hovering over Twitch channels without ads",
-  "permissions": ["storage", "declarativeNetRequest"],
-  "host_permissions": ["*://*.twitch.tv/*"],
-  "background": {
-    "service_worker": "background.js"
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "twitch-video-preview@zen-browser",
+      "strict_min_version": "109.0"
+    }
   },
+  "permissions": ["storage"],
+  "host_permissions": [
+    "*://*.twitch.tv/*",
+    "*://*.twitchcdn.net/*",
+    "*://*.jtvnw.net/*",
+    "*://player.twitch.tv/*"
+  ],
   "content_scripts": [
     {
       "matches": ["*://*.twitch.tv/*"],
       "js": ["content.js"],
       "css": ["styles.css"],
-      "run_at": "document_idle",
-      "all_frames": true
+      "run_at": "document_idle"
     }
   ],
-
   "icons": {
     "16": "favicon.png",
     "48": "favicon.png",
